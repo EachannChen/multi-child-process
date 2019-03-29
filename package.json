@@ -1,0 +1,23 @@
+{
+  "name": "multi-child-process",
+  "version": "1.0.0",
+  "description": "multi-child-process module for node ",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "mocha test/index.test.js && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "''"
+  },
+  "keywords": [
+    "multiprocess",
+    "pool",
+    "node"
+  ],
+  "author": "eachann chen",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}

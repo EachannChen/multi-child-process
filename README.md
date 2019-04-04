@@ -30,14 +30,28 @@ var pool = require('multi-child-process');
 var procPool = new pool.initPool(3);//default: the number of cpus
 ```
 Now init child process, these arguments must be passed:
-
-- `workPath`(string) : like './logic' 
-- `jobname`(string)  : like 'module.exports.jobname=jobname' in the path './logic' 
-- `jobArguments`     : arguments that job function need
-- `jobCb`(function)  : callback of job function 
+```js
+pool.initChildProc(workPath, jobname, jobArgObject, cb);
+```
+- `workPath`(string) : workModule of absolute path, like `__dirname+'/logic.js'` 
+- `jobname`(string)  : like 'module.exports.jobname=jobname' in the `workPath` 
+- `jobArgObject`(Object): arguments that job function need, like {key:value}
+- `cb`(function)  : callback function 
 
 ```js
-pool.initChildProc(workPath, jobname, jobArguments, jobCb);
+./main.js
+pool.initChildProc(__dirname+'/logic.js', jobname, jobArgObject, function(err,ret){
+//err: error of child process or job 
+//ret: result of job function callback 
+});
+
+./logic.js
+function jobname(jobArgObject,callback){}
+module.exports.jobname=jobname;
+```
+If child processes pool is inited, this `pool.isAllAvail()` will be true.
+```js
+pool.isInited();
 ```
 
 If all child processes are all available, this message event '`isAllAvail`' will be emitted.

@@ -39,17 +39,17 @@ pool.initChildProc(workPath, jobname, jobArgObject, cb);
 - `cb`(function)  : callback function 
 
 ```js
-./main.js
+//./main.js
 pool.initChildProc(__dirname+'/logic.js', jobname, jobArgObject, function(err,ret){
 //err: error of child process or job 
 //ret: result of job function callback 
 });
 
-./logic.js
+//./logic.js
 function jobname(jobArgObject,callback){}
 module.exports.jobname=jobname;
 ```
-If child processes pool is inited, this `pool.isAllAvail()` will be true.
+If child processes pool has been inited, this `pool.isInited()` will be true.
 ```js
 pool.isInited();
 ```

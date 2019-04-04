@@ -12,6 +12,7 @@ describe('主函数测试', function () {
 
   it('测试：进程池启动成功initPool', function () {
     expect(procPool).to.be.an.instanceof(events);
+    expect(poolModule.isInited()).to.be.ok;
   });
 
   it('测试：使用子进程并运行完毕', function (done) {
@@ -46,13 +47,13 @@ describe('主函数测试', function () {
     })
   });
 
-  it('测试：关闭进程池closePool', function () {
+  it('测试：关闭进程池closePool', function (done) {
     expect(poolModule.totalProcNum()).to.be.equal(poolSize);
-    poolModule.closePool(function (done) {
+    poolModule.closePool(function () {
+      expect(poolModule.isInited()).to.not.be.ok;
       expect(poolModule.actiProcNum()).to.be.equal(0);
       expect(poolModule.totalProcNum()).to.be.equal(0);
       done();
     });
   });
-
 });
